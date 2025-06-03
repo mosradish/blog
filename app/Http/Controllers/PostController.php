@@ -12,6 +12,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::with('user')->latest()->get();
+        $posts = Post::withCount('comments')->latest()->get(); // ← コメント数を事前に取得
         return view('posts.index', compact('posts'));
     }
 

@@ -19,6 +19,11 @@ class Post extends Model
         'body',
         'image_path',
     ];
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
 
 

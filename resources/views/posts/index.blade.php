@@ -10,12 +10,15 @@
 
         @foreach($posts as $post)
             <div class="mt-4 p-4 border rounded">
-            <h3 class="text-lg font-bold">
-                <a href="{{ route('posts.show', $post) }}" class="text-blue-600 underline">{{ $post->title }}</a>
-            </h3>
+                <h3 class="text-lg font-bold">
+                    <a href="{{ route('posts.show', $post) }}" class="text-blue-600 underline">{{ $post->title }}</a>
+                </h3>
+                <p class="text-gray-600 text-sm">
+                    コメント数：{{ $post->comments_count > 0 ? $post->comments_count : '-' }}件
+                </p>
                 <p class="text-sm text-gray-600">by {{ $post->user->name }} at {{ $post->created_at->format('Y/m/d H:i') }}</p>
-                @if($post->image_path)
-                    <img src="{{ asset('storage/' . $post->image_path) }}" class="mt-2 max-w-xs">
+                @if ($post->image_path)
+                    <img src="{{ asset('storage/' . $post->image_path) }}" alt="サムネイル画像" class="w-32 h-20 object-cover rounded">
                 @endif
                 <p class="mt-2">{{ $post->body }}</p>
                 @auth

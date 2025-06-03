@@ -64,6 +64,7 @@
         </div>
     </div>
 
+
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
@@ -72,29 +73,39 @@
             </x-responsive-nav-link>
         </div>
 
-        <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()?->name ?? 'ゲスト' }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()?->name ?? 'ゲストアドレス' }}</div>
+
+        @guest
+            <!-- ゲストユーザー（未ログイン）の場合 -->
+            <div class="pt-4 pb-1 border-t border-gray-200">
+                <a href="{{ route('login') }}" class="text-sm text-gray-700 hover:text-blue-500">
+                    <div class="font-medium text-base text-gray-800">ログイン</div>
+                </a>
             </div>
+        @else
+            <!-- Responsive Settings Options -->
+            <div class="pt-4 pb-1 border-t border-gray-200">
+                <div class="px-4">
+                    <div class="font-medium text-base text-gray-800">{{ Auth::user()?->name ?? 'ゲスト' }}</div>
+                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()?->name ?? 'ゲストアドレス' }}</div>
+                </div>
 
-            <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
-                </x-responsive-nav-link>
-
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                <div class="mt-3 space-y-1">
+                    <x-responsive-nav-link :href="route('profile.edit')">
+                        {{ __('Profile') }}
                     </x-responsive-nav-link>
-                </form>
+
+                    <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                        <x-responsive-nav-link :href="route('logout')"
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-responsive-nav-link>
+                    </form>
+                </div>
             </div>
-        </div>
+        @endguest
     </div>
 </nav>
