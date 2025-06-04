@@ -2,8 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800">投稿一覧</h2>
     </x-slot>
-
-    <div class="p-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         @auth
             <a href="{{ route('posts.create') }}" class="text-blue-500 underline">新規投稿</a>
         @endauth
