@@ -3,7 +3,7 @@
         <h2 class="text-xl font-semibold text-gray-800">投稿詳細</h2>
     </x-slot>
 
-    <div class="p-6">
+    <div class="p-6 max-w-full px-[10%] mx-auto">
         <h3 class="text-2xl font-bold">{{ $post->title }}</h3>
         <p class="text-sm text-gray-500 mb-4">投稿者: {{ $post->user->name }}</p>
         
@@ -13,21 +13,20 @@
             <img src="{{ asset('storage/' . $post->image_path) }}" class="w-64 mb-4">
         @endif
 
-        <a href="{{ route('posts.index') }}" class="text-blue-500 underline">← 一覧に戻る</a>
+        <a href="{{ route('posts.index') }}" class="text-blue-600 underline hover:opacity-75">← 一覧に戻る</a>
     </div>
 
     <hr class="my-6">
 
-    <div class="flex_box">
-        <h4 class="text-lg font-semibold mb-2">コメント</h4>
+    <div class="flex_box max-w-full px-[10%] mx-auto">
         <h2 class="text-2xl font-bold mb-4">
-            コメント（{{ $post->comments_count > 0 ? $post->comments_count . '件' : '-' }}件）
+            コメント {{ $post->comments_count ?: '-' }}件
         </h2>
     </div>
 
 
     @foreach ($post->comments as $comment)
-        <div class="border rounded p-2 mb-2">
+        <div class="border rounded p-2 mb-2 w-[80%] mx-[10%] mx-auto">
             <p>{{ $comment->body }}</p>
             <small>投稿者: {{ $comment->user->name }} | {{ $comment->created_at->diffForHumans() }}</small>
 
@@ -49,11 +48,13 @@
     @auth
         <form action="{{ route('comments.store', $post) }}" method="POST" class="mt-4">
             @csrf
-            <textarea name="body" rows="3" class="w-full border rounded p-2" placeholder="コメントを書く..."></textarea>
-            <button type="submit" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded">投稿</button>
+            <textarea name="body" rows="3" class="w-[80%] mx-[10%] border rounded p-2" placeholder="コメントを書く..."></textarea>
+            <div class="py-5 max-w-full px-[10%] mx-auto">
+                <button type="submit" class="inline-flex items-center bg-blue-500 text-white px-4 py-2 rounded hover:underline">投稿</button>
+            </div>
         </form>
     @else
-        <p class="mt-4 text-sm text-gray-600">コメントを投稿するにはログインしてください。</p>
+        <p class="pb-4 w-[80%] mx-[10%] mt-4 text-sm text-gray-600">コメントを投稿するにはログインしてください。</p>
     @endauth
 
 

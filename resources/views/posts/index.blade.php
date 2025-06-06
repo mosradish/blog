@@ -2,32 +2,34 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800">投稿一覧</h2>
     </x-slot>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="w-full px-[10%] mx-auto pb-4">
         @auth
-            <a href="{{ route('posts.create') }}" class="text-blue-500 underline">新規投稿</a>
+            <a href="{{ route('posts.create') }}" class="inline-flex items-center bg-blue-500 text-white px-4 py-2 mb-2 rounded hover:underline">新規投稿</a>
         @endauth
 
         @foreach($posts as $post)
-            <div class="mt-4 p-4 border rounded">
+            <div class="mt-2 p-4 border-4 rounded">
                 <h3 class="text-lg font-bold">
                     <a href="{{ route('posts.show', $post) }}" class="text-blue-600 underline">{{ $post->title }}</a>
                 </h3>
                 <p class="text-gray-600 text-sm">
-                    コメント数：{{ $post->comments_count > 0 ? $post->comments_count : '-' }}件
+                    コメント {{ $post->comments_count ?: '-' }}件
                 </p>
                 <p class="text-sm text-gray-600">by {{ $post->user->name }} at {{ $post->created_at->format('Y/m/d H:i') }}</p>
                 @if ($post->image_path)
-                    <img src="{{ asset('storage/' . $post->image_path) }}" alt="サムネイル画像" class="w-32 h-20 object-cover rounded">
+                    <img src="{{ asset('storage/' . $post->image_path) }}" alt="サムネイル画像" class="w-40 h-30 object-cover rounded">
                 @endif
-                <p class="mt-2">{{ $post->body }}</p>
+                <p class="mt-2 py-4">{{ $post->body }}</p>
                 @auth
                     @if ($post->user_id === Auth::id())
-                        <a href="{{ route('posts.edit', $post) }}" class="text-blue-500 mr-2">編集</a>
+                        <!-- ボタンレイアウト -->
+                        <a href="{{ route('posts.edit', $post) }}" class="inline-flex items-center bg-blue-500 text-white mr-2 px-4 py-2 rounded hover:underline">編集</a>
 
                         <form action="{{ route('posts.destroy', $post) }}" method="POST" class="inline-block">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-red-500" onclick="return confirm('本当に削除しますか？')">削除</button>
+                            <!-- ボタンレイアウト -->
+                            <button type="submit" class="inline-flex items-center bg-red-500 text-white px-4 py-2 rounded hover:underline" onclick="return confirm('本当に削除しますか？')">削除</button>
                         </form>
                     @endif
                 @endauth

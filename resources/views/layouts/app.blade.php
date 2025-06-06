@@ -21,14 +21,14 @@
 
             <!-- Page Heading -->
             @isset($header)
-                <header id="header">
+                <header class="x-full mx-auto bg-white text-center align-middle py-4 mb-4">
                         {{ $header }}
                 </header>
             @endisset
 
             <!-- Page Content -->
             <main>
-                <div id="main">
+                <div id="x-full bg-gray text-center">
                     {{ $slot }}
                 </div>
             </main>
