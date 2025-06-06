@@ -11,7 +11,10 @@ class PostController extends Controller
     // 投稿一覧表示
     public function index()
     {
-        $posts = Post::with(['user'])->withCount('comments')->latest()->get();
+        $posts = Post::with(['user'])
+            ->withCount(['comments', 'likes'])
+            ->latest()
+            ->get();
         return view('posts.index', compact('posts'));
     }
 
@@ -48,8 +51,8 @@ class PostController extends Controller
     // 投稿詳細
     public function show(Post $post)
     {
-        $post->loadCount('comments'); // ← コメント数を追加で読み込む
-        $post->load(['comments']); // コメントと、その投稿者(user)も同時に取得（必要なら）
+        $post->loadCount('comments', 'likes'); // ← コメント数を追加で読み込む
+        $post->load(['comments']); // コメントを取得
         return view('posts.show', compact('post'));
     }
 

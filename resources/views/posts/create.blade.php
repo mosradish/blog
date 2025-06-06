@@ -3,7 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800">新規投稿</h2>
     </x-slot>
 
-    <div class="p-6">
+    <div class="p-6 w-[80%] mx-[10%]">
         <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="mb-4">

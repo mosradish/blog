@@ -15,7 +15,11 @@
                 <p class="text-gray-600 text-sm">
                     コメント {{ $post->comments_count ?: '-' }}件
                 </p>
+                <p class="text-gray-600 text-sm">
+                    いいね {{ $post->likes_count ?: '-' }}件
+                </p>
                 <p class="text-sm text-gray-600">by {{ $post->user->name }} at {{ $post->created_at->format('Y/m/d H:i') }}</p>
+                <!-- 画像関連処理 -->
                 @if ($post->image_path)
                     <img src="{{ asset('storage/' . $post->image_path) }}" alt="サムネイル画像" class="w-40 h-30 object-cover rounded">
                 @endif

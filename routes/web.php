@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
-
+use App\Http\Controllers\LikeController;
 
 //post view
 Route::get('/', [PostController::class, 'index'])->name('posts.index');
@@ -30,6 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    //Like機能
+    Route::post('/posts/{post}/like', [LikeController::class, 'store'])->name('posts.like');
+    Route::delete('/posts/{post}/like', [LikeController::class, 'destroy'])->name('posts.unlike');
 });
 
 require __DIR__.'/auth.php';

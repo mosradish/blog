@@ -10,7 +10,7 @@
         <p class="mb-4">{{ $post->body }}</p>
 
         @if ($post->image_path)
-            <img src="{{ asset('storage/' . $post->image_path) }}" class="w-64 mb-4">
+            <img src="{{ asset('storage/' . $post->image_path) }}" class="max-w-[50%] max-h-64 mx-auto my-4">
         @endif
 
         <a href="{{ route('posts.index') }}" class="text-blue-600 underline hover:opacity-75">← 一覧に戻る</a>
@@ -18,9 +18,26 @@
 
     <hr class="my-6">
 
+    @auth
+        <div class="m-4 w-[80%] mx-[10%]">
+            @if ($post->isLikedBy(auth()->user()))
+                <form action="{{ route('posts.unlike', $post) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="text-red-500">♥ いいね取り消し</button>
+                </form>
+            @else
+                <form action="{{ route('posts.like', $post) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="text-gray-500">♡ いいね</button>
+                </form>
+            @endif
+        </div>
+    @endauth
+
     <div class="flex_box max-w-full px-[10%] mx-auto">
         <h2 class="text-2xl font-bold mb-4">
-            コメント {{ $post->comments_count ?: '-' }}件
+            コメント {{ $post->comments_count ?: '-' }}件 いいね {{ $post->likes_count ?: '-' }}件
         </h2>
     </div>
 
@@ -56,7 +73,6 @@
     @else
         <p class="pb-4 w-[80%] mx-[10%] mt-4 text-sm text-gray-600">コメントを投稿するにはログインしてください。</p>
     @endauth
-
 
 
 </x-app-layout>
