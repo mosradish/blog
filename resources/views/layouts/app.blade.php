@@ -21,7 +21,7 @@
 
             <!-- Page Heading -->
             @isset($header)
-                <header class="x-full mx-auto bg-white text-center align-middle">
+                <header class="w-full mx-auto h-16 bg-white flex">
                         {{ $header }}
                 </header>
             @endisset

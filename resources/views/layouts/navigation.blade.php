@@ -1,10 +1,10 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100 shadow">
     <!-- Primary Navigation Menu -->
     <div class="w-full px-[10%] mx-auto bg-white text-center align-middle flex justify-between h-16">
         <div class="flex">
             <!-- Logo -->
             <a href="{{ route('posts.index') }}">
-                <div class="w-16 block">
+                <div class="w-16 block z-20">
                     <x-application-logo/>
                 </div>
             </a>
@@ -82,36 +82,61 @@
         </div>
 
         <!-- Responsive Navigation Menu -->
-        <div :class="{'block': open, 'hidden': ! open}" class="w-[100%] z-10 bg-white absolute hidden sm:hidden">
-            <div class="h-16">
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                    {{ __('Dashboard') }}
-                </x-responsive-nav-link>
+        <div :class="{'block': open, 'hidden': ! open}" class="w-[100vw] left-0 z-10 bg-white absolute hidden sm:hidden">
+            <div class="w-full">
+                <div class="w-16 left-[10%] absolute z-20">
+                    <x-application-logo/>
+                </div>
+                <ul class="list-none divide-y divide-gray-200 flex flex-wrap">
+                    @auth
+                        <li class="h-16 border-gray-200 w-full place-content-center">
+                            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-center align-middle">
+                                {{ __('Dashboard') }}
+                            </x-responsive-nav-link>
+                        </li>
+                    @else
+                        <li class="h-16 border-gray-200 w-full place-content-center">
+                            <x-nav-link :href="route('register')" :active="request()->routeIs('dashboard')">
+                                {{ __('Register') }}
+                            </x-nav-link>
+                        </li>
+                        <li class="h-16 border-gray-200 w-full place-content-center">
+                            <x-nav-link :href="route('login')" :active="request()->routeIs('dashboard')">
+                                {{ __('Login') }}
+                            </x-nav-link>
+                        </li>
+                    @endauth
+                    <!-- Responsive Settings Options -->
+                    <li class="h-16 w-full place-content-center">
+                        <h2 class=" font-semibold text-xl text-gray-800">{{ Auth::user()?->name ?? 'ゲスト' }}</h2>
+                    </li>
+
+                    @auth
+                        <li class="h-16 w-full place-content-center">
+                            <x-responsive-nav-link :href="route('profile.edit')" class="text-center align-middle">
+                                {{ __('Profile') }}
+                            </x-responsive-nav-link>
+                        </li>
+
+                        <li class="h-16 w-full place-content-center">
+                            <!-- Authentication -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <x-responsive-nav-link :href="route('logout')"
+                                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();"
+                                                    class="text-center align-middle">
+                                    {{ __('Log Out') }}
+
+                                </x-responsive-nav-link>
+                            </form>
+                        </li>
+                    @endauth
+                </ul>
+
             </div>
 
-            <!-- Responsive Settings Options -->
-            <div>
-                <div class="h-16 border-t border-gray-200">
-                    <h2 class="font-semibold text-xl text-gray-800">{{ Auth::user()?->name ?? 'ゲスト' }}</h2>
-                </div>
-
-                <div class="mt-3 space-y-1 border-t border-gray-200">
-                    <x-responsive-nav-link :href="route('profile.edit')">
-                        {{ __('Profile') }}
-                    </x-responsive-nav-link>
-
-                    <!-- Authentication -->
-                    <form method="POST" action="{{ route('logout') }}" class="border-t border-b border-gray-200">
-                        @csrf
-
-                        <x-responsive-nav-link :href="route('logout')"
-                                onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                            {{ __('Log Out') }}
-                        </x-responsive-nav-link>
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
 </nav>
