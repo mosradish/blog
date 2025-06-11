@@ -15,8 +15,17 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-gray-900 antialiased bg-gray-100">
-        <div class="mb-6 min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 dark:bg-gray-900">
-            <div>
+        <div class="mb-6 min-h-screen flex flex-col sm:justify-center items-center dark:bg-gray-900">
+            @include('layouts.navigation')
+
+            <!-- Page Heading -->
+            @isset($header)
+                <header class="mt-16 w-full mx-auto h-16 bg-white flex shadow">
+                        {{ $header }}
+                </header>
+            @endisset
+
+            <div class="mt-4">
                 <a href="/">
                     <div class="w-[50%] h-auto mx-auto">
                         <x-application-logo/>

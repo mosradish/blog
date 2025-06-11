@@ -1,4 +1,7 @@
 <x-guest-layout>
+    <x-slot name="header">
+        <h2 class="w-full place-content-center text-center font-semibold text-xl text-gray-800">ログイン</h2>
+    </x-slot>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
