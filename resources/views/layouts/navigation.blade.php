@@ -117,7 +117,7 @@
                         @auth
                             <li class="h-16 flex w-full gap-x-16">
 
-                                <x-responsive-nav-link :href="route('profile.edit')" class="h-12 w-auto justify-center inline-flex text-center bg-blue-500 text-white px-4 py-2 ml-2 my-2 rounded hover:underline">
+                                <x-responsive-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')" class="h-12 w-auto justify-center inline-flex text-center bg-blue-500 text-white px-4 py-2 ml-2 my-2 rounded hover:underline">
                                     Profile
                                 </x-responsive-nav-link>
 

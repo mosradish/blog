@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-xl font-semibold text-gray-800">投稿の編集</h2>
+        <h2 class="w-full place-content-center text-center text-xl font-semibold text-gray-800">投稿の編集</h2>
     </x-slot>
 
     <div class="p-6">

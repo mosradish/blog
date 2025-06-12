@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800">新規投稿</h2>
+        <h2 class="w-full place-content-center text-center font-semibold text-xl text-gray-800">新規投稿</h2>
     </x-slot>
 
     <div class="p-6 w-[80%] mx-[10%]">
