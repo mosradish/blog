@@ -101,12 +101,12 @@
                                 </x-responsive-nav-link>
                             </li>
                         @else
-                            <li class="h-16 flex w-full gap-x-10">
-                                <x-responsive-nav-link :href="route('register')" :active="request()->routeIs('register')" class="h-12 justify-center align-middle inline-flex text-center bg-blue-500 text-white px-4 py-2 ml-2 my-2 rounded hover:underline">
+                            <li class="h-16 flex w-full justify-between">
+                                <x-responsive-nav-link :href="route('register')" :active="request()->routeIs('register')" class="h-12 w-28 justify-center align-middle inline-flex text-center bg-blue-500 text-white px-4 py-2 ml-4 my-2 rounded hover:underline">
                                     Register
                                 </x-responsive-nav-link>
                                 
-                                <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')" class="h-12 justify-center align-middle inline-flex text-center bg-blue-500 text-white px-4 py-2 mr-2 my-2 rounded hover:underline">
+                                <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')" class="h-12 w-28 justify-center align-middle inline-flex text-center bg-blue-500 text-white px-4 py-2 mr-4 my-2 rounded hover:underline">
                                     Login
                                 </x-responsive-nav-link>
                             </li>
