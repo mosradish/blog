@@ -42,8 +42,8 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('profile.edit')">
-                                {{ __('Profile') }}
+                            <x-dropdown-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
+                                Profile
                             </x-dropdown-link>
 
                             <!-- Authentication -->
@@ -52,8 +52,9 @@
 
                                 <x-dropdown-link :href="route('logout')"
                                         onclick="event.preventDefault();
-                                                    this.closest('form').submit();">
-                                    {{ __('Log Out') }}
+                                            if (confirm('本当にログアウトしますか？'))
+                                        this.closest('form').submit();">
+                                    Logout
                                 </x-dropdown-link>
                             </form>
                         </x-slot>
@@ -96,7 +97,7 @@
 
                         @auth
                             <li class="h-16 w-full place-content-center">
-                                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-center align-middle text-white">
+                                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-center align-middle text-white pl-2">
                                     {{ __('Dashboard') }}
                                 </x-responsive-nav-link>
                             </li>
@@ -125,9 +126,9 @@
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <x-responsive-nav-link :href="route('logout')"
-                                        onclick="event.preventDefault();
-                                        if (confirm('本当にログアウトしますか？')) this.closest('form').submit();"
-                                        class="h-12 w-28 bg-red-500 text-white px-4 py-2 mr-4 my-2 rounded hover:underline">
+                                            onclick="event.preventDefault();
+                                                if (confirm('本当にログアウトしますか？')) this.closest('form').submit();"
+                                            class="h-12 w-28 bg-red-500 text-white px-4 py-2 mr-4 my-2 rounded hover:underline">
                                         Logout
                                     </x-responsive-nav-link>
                                 </form>
