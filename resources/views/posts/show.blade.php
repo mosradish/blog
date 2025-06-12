@@ -24,12 +24,12 @@
                 <form action="{{ route('posts.unlike', $post) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="text-red-500">♥ いいね取り消し</button>
+                    <button type="submit" class="text-red-500 border-b border-transparent hover:border-red-500 transition duration-150">♥ いいね取り消し</button>
                 </form>
             @else
                 <form action="{{ route('posts.like', $post) }}" method="POST">
                     @csrf
-                    <button type="submit" class="text-gray-500">♡ いいね</button>
+                    <button type="submit" class="text-gray-500 border-b border-transparent hover:border-gray-500 transition duration-150">♡ いいね</button>
                 </form>
             @endif
         </div>
@@ -44,18 +44,23 @@
 
     @foreach ($post->comments as $comment)
         <div class="border rounded p-2 mb-2 w-[80%] mx-[10%] mx-auto">
-            <p>{{ $comment->body }}</p>
+            <!-- \nを<br>タグに変換 -->
+            <p>{!! nl2br(e($comment->body)) !!}</p>
             <small>投稿者: {{ $comment->user->name }} | {{ $comment->created_at->diffForHumans() }}</small>
 
             @if (auth()->id() === $comment->user_id)
                 <div class="flex space-x-2 mt-2">
-                    <a href="{{ route('comments.edit', $comment) }}" class="text-blue-500 hover:underline">編集</a>
 
-                    <form action="{{ route('comments.destroy', $comment) }}" method="POST">
+                    <!-- ボタンレイアウト -->
+                    <a href="{{ route('comments.edit', $comment) }}" class="inline-flex items-center bg-blue-500 text-white mr-2 px-4 py-2 rounded hover:underline">編集</a>
+
+                    <form action="{{ route('comments.destroy', $comment) }}" method="POST" class="inline-block">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" onclick="return confirm('本当に削除しますか？')" class="text-red-500 hover:underline">削除</button>
+                        <!-- ボタンレイアウト -->
+                        <button type="submit" class="inline-flex items-center bg-red-500 text-white px-4 py-2 rounded hover:underline" onclick="return confirm('本当に削除しますか？')">削除</button>
                     </form>
+
                 </div>
             @endif
 
