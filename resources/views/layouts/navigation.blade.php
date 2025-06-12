@@ -115,9 +115,9 @@
 
 
                         @auth
-                            <li class="h-16 flex w-full gap-x-16">
+                            <li class="h-16 flex w-full justify-between">
 
-                                <x-responsive-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')" class="h-12 w-auto justify-center inline-flex text-center bg-blue-500 text-white px-4 py-2 ml-2 my-2 rounded hover:underline">
+                                <x-responsive-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')" class="h-12 w-28 bg-blue-500 text-white px-4 py-2 ml-4 my-2 rounded hover:underline">
                                     Profile
                                 </x-responsive-nav-link>
 
@@ -127,7 +127,7 @@
                                     <x-responsive-nav-link :href="route('logout')"
                                         onclick="event.preventDefault();
                                         if (confirm('本当にログアウトしますか？')) this.closest('form').submit();"
-                                        class="h-12 w-auto justify-center inline-flex text-center bg-red-500 text-white px-4 py-2 mr-2 my-2 rounded hover:underline">
+                                        class="h-12 w-28 bg-red-500 text-white px-4 py-2 mr-4 my-2 rounded hover:underline">
                                         Logout
                                     </x-responsive-nav-link>
                                 </form>
