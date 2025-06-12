@@ -22,7 +22,7 @@
                 @if ($post->image_path)
                     <img src="{{ asset('storage/' . $post->image_path) }}" alt="サムネイル画像" class="w-40 h-30 object-cover rounded">
                 @endif
-                    <p class="mt-2 py-4">{!! nl2br(e($comment->body)) !!}</p>
+                    <p class="mt-2 py-4">{!! nl2br(e($post->body)) !!}</p>
                 @auth
                     @if ($post->user_id === Auth::id())
                         <!-- ボタンレイアウト -->
