@@ -3,7 +3,14 @@
         <h2 class="w-full place-content-center text-center font-semibold text-xl text-gray-800 dark:text-white">投稿一覧</h2>
     </x-slot>
 
-    <div class="w-full px-[10%] mx-auto py-4 bg-white dark:bg-gray-900 text-gray-800 dark:text-white">
+    <div class="w-full px-[10%] mx-auto pb-4 bg-white dark:bg-gray-900 text-gray-800 dark:text-white">
+
+        @auth
+            <a href="{{ route('posts.create') }}"
+                class="block w-24 bg-blue-500 text-white px-4 py-2 my-4 rounded hover:underline hover:bg-blue-600 dark:hover:bg-blue-600">
+                新規投稿
+            </a>
+        @endauth
 
         @foreach($posts as $post)
             <div class="mt-2 p-4 border-4 rounded border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800">

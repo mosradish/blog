@@ -24,19 +24,13 @@
         x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))"
         class="bg-white dark:bg-gray-900 text-gray-800 dark:text-white transition-colors">
 
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div class="min-h-screen dark:bg-gray-900">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
             @isset($header)
                 <header class="mt-16 w-full mx-auto flex items-center h-16 bg-white border-b border-gray-100 dark:bg-gray-900 flex shadow dark:border-gray-700 dark:shadow-md relative">
                     <!-- トグルボタン -->
-                    @auth
-                        <a href="{{ route('posts.create') }}"
-                            class="absolute left-[10%] top-1/2 transform -translate-y-1/2 bg-blue-500 text-white px-4 py-2 mb-2 rounded hover:underline hover:bg-blue-600 dark:hover:bg-blue-600">
-                            新規投稿
-                        </a>
-                    @endauth
                     {{ $header }}
                     <button @click="darkMode = !darkMode"
                             class="absolute right-[10%] w-6 h-6 justify-end text-sm top-1/2 transform -translate-y-1/2 border border-black rounded text-black bg-white
