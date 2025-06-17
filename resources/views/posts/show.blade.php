@@ -1,9 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-xl font-semibold text-gray-800 dark:text-white">投稿詳細</h2>
+        <h2 class="w-full place-content-center text-center font-semibold text-xl text-gray-800 dark:text-gray-200">投稿詳細</h2>
     </x-slot>
 
-    <div class="p-6 max-w-[80%] mx-[10%] mx-auto bg-white dark:bg-gray-800 text-gray-800 dark:text-white">
+    <div class="py-6 w-[80%] mx-[10%] mx-auto bg-white dark:bg-gray-900 text-gray-800 dark:text-white">
         <h3 class="text-2xl font-bold">{{ $post->title }}</h3>
         <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">投稿者: {{ $post->user->name }}</p>
         

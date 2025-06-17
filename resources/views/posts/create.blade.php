@@ -3,7 +3,7 @@
         <h2 class="w-full place-content-center text-center font-semibold text-xl text-gray-800 dark:text-gray-200">新規投稿</h2>
     </x-slot>
 
-    <div class="p-6 w-[80%] mx-[10%] bg-white dark:bg-gray-800 rounded shadow">
+    <div class="p-6 w-[80%] mx-[10%] bg-gray-100 dark:bg-gray-800 border-2 border-gray-400 dark:border-white rounded shadow">
         <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="mb-4">

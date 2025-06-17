@@ -15,8 +15,11 @@
                 <textarea name="body" id="body" rows="4" class="w-full border rounded p-2" required>{{ old('body', $comment->body) }}</textarea>
             </div>
 
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">更新する</button>
-            <a href="{{ route('posts.show', $comment->post_id) }}" class="ml-2 text-gray-600">戻る</a>
+            <button type="submit" class="bg-blue-500 text-white mr-2 px-4 py-2 rounded">更新する</button>
+            <a href="{{ route('posts.show', $comment->post_id) }}"
+                class="inline-flex items-center bg-blue-500 text-white ml-2 px-4 py-2 rounded hover:underline hover:bg-blue-600 dark:hover:bg-blue-600">
+                戻る
+            </a>
         </form>
     </div>
 </x-app-layout>

@@ -1,9 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="w-full place-content-center text-center text-xl font-semibold text-gray-800 dark:text-gray-200">投稿の編集</h2>
+        <h2 class="w-full place-content-center text-center font-semibold text-xl text-gray-800 dark:text-gray-200">投稿の編集</h2>
     </x-slot>
 
-    <div class="py-6 w-[80%] mx-[10%]">
+    <div class="p-6 w-[80%] mx-[10%] bg-gray-100 dark:bg-gray-800 border-2 border-gray-400 dark:border-white rounded shadow">
         <form method="POST" action="{{ route('posts.update', $post) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')

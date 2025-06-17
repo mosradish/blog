@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\ActivityLog;
 use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
@@ -23,6 +24,12 @@ class CommentController extends Controller
         $comment->post_id = $post->id;
         $comment->save();
 
+        ActivityLog::create([
+            'user_id' => auth()->id(),
+            'action' => 'post_created',
+            'description' => "ブログ「{$post->title}」にコメントしました。",
+        ]);
+
         return redirect()->route('posts.show', $post)->with('success', 'コメントを投稿しました');
     }
 
@@ -34,6 +41,14 @@ class CommentController extends Controller
         }
 
         $comment->delete();
+
+        $post = $comment->post;
+
+        ActivityLog::create([
+            'user_id' => auth()->id(),
+            'action' => 'post_created',
+            'description' => "ブログ「{$post->title}」のコメントを削除しました。",
+        ]);
 
         return redirect()->back()->with('success', 'コメントを削除しました。');
     }
@@ -59,6 +74,14 @@ class CommentController extends Controller
 
         $comment->body = $request->body;
         $comment->save();
+
+        $post = $comment->post;
+
+        ActivityLog::create([
+            'user_id' => auth()->id(),
+            'action' => 'post_created',
+            'description' => "ブログ「{$post->title}」のコメントを編集しました。",
+        ]);
 
         return redirect()->route('posts.show', $comment->post_id)->with('success', 'コメントを更新しました。');
     }

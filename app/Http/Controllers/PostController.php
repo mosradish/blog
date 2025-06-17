@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\ActivityLog;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -38,11 +39,17 @@ class PostController extends Controller
             $path = $request->file('image')->store('images', 'public');
         }
 
-        Post::create([
+        $post = Post::create([
             'user_id' => Auth::id(),
             'title' => $request->title,
             'body' => $request->body,
             'image_path' => $path,
+        ]);
+
+        ActivityLog::create([
+            'user_id' => auth()->id(),
+            'action' => 'post_created',
+            'description' => "ブログ「{$post->title}」を投稿しました。",
         ]);
 
         return redirect()->route('posts.index')->with('success', '投稿が作成されました');
@@ -90,6 +97,12 @@ class PostController extends Controller
             'image_path' => $path,
         ]);
 
+        ActivityLog::create([
+            'user_id' => auth()->id(),
+            'action' => 'post_update',
+            'description' => "ブログ「{$post->title}」を編集しました。",
+        ]);
+
         return redirect()->route('posts.index')->with('success', '投稿を更新しました');
     }
 
@@ -101,6 +114,13 @@ class PostController extends Controller
         }
 
         $post->delete();
+
+        ActivityLog::create([
+            'user_id' => auth()->id(),
+            'action' => 'post_deleted',
+            'description' => "ブログ「{$post->title}」を削除しました。",
+        ]);
+
 
         return redirect()->route('posts.index')->with('success', '投稿を削除しました');
     }

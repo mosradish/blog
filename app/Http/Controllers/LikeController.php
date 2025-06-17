@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Like;
+use App\Models\ActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,6 +18,12 @@ class LikeController extends Controller
             $post->likes()->create(['user_id' => $user->id]);
         }
 
+        ActivityLog::create([
+            'user_id' => auth()->id(),
+            'action' => 'post_created',
+            'description' => "ブログ「{$post->title}」にいいねしました。",
+        ]);
+
         return back();
     }
 
@@ -25,6 +32,12 @@ class LikeController extends Controller
         $user = Auth::user();
 
         $post->likes()->where('user_id', $user->id)->delete();
+
+        ActivityLog::create([
+            'user_id' => auth()->id(),
+            'action' => 'post_created',
+            'description' => "ブログ「{$post->title}」のいいねを取り消しました。",
+        ]);
 
         return back();
     }

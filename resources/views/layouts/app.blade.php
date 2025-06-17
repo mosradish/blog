@@ -29,7 +29,7 @@
 
             <!-- Page Heading -->
             @isset($header)
-                <header class="mt-16 w-full mx-auto flex items-center h-16 bg-white border-b border-gray-100 dark:bg-gray-900 flex shadow dark:border-gray-700 dark:shadow-md relative">
+                <header class="mt-16 mb-6 w-full mx-auto flex items-center h-16 bg-white border-b border-gray-100 dark:bg-gray-900 flex shadow dark:border-gray-700 dark:shadow-md relative">
                     <!-- トグルボタン -->
                     {{ $header }}
                     <button @click="darkMode = !darkMode"
@@ -52,7 +52,7 @@
 
             <!-- Page Content -->
             <main>
-                <div id="x-full bg-gray text-center">
+                <div id="x-full bg-gray-100 text-center">
                     {{ $slot }}
                 </div>
             </main>

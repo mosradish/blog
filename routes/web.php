@@ -5,12 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
+use App\Models\ActivityLog;
+
 
 //post view
 Route::get('/', [PostController::class, 'index'])->name('posts.index');
 //post create
-Route::get('/posts/create', [PostController::class, 'create'])->middleware('auth')->name('posts.create');
-Route::post('/posts', [PostController::class, 'store'])->middleware('auth')->name('posts.store');
 Route::resource('posts', PostController::class)->middleware('auth')->except(['index', 'show']);
 //comment show + post
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
@@ -22,7 +22,8 @@ Route::get('/comments/{comment}/edit', [CommentController::class, 'edit'])->name
 Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update')->middleware('auth');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $activities = ActivityLog::latest()->with('user')->take(10)->get();
+    return view('dashboard', compact('activities'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
