@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\ActivityLog;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,7 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+
         return view('profile.edit', [
             'user' => $request->user(),
         ]);
@@ -33,6 +35,14 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
+
+        $user = $request->user();
+
+        ActivityLog::create([
+            'user_id' => auth()->id(),
+            'action' => 'profile_updated',
+            'description' => "ユーザー「{$user->name}」のプロフィールを編集しました。",
+        ]);
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
