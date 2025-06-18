@@ -22,7 +22,7 @@
     x-data="{ darkMode: localStorage.getItem('darkMode') === 'true' }"
     x-bind:class="darkMode ? 'dark' : ''"
     x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))"
-    class="font-sans text-gray-900 antialiased bg-gray-100 dark:bg-gray-900 dark:text-white transition-colors"
+    class="font-sans text-gray-900 antialiased bg-gray-white dark:bg-gray-900 dark:text-white transition-colors"
 >
     <div class="mb-6 min-h-screen flex flex-col sm:justify-center items-center relative dark:bg-gray-900">
 
@@ -53,7 +53,7 @@
             </a>
         </div>
 
-        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-gray-100 dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+        <div class="w-full my-4 sm:max-w-md my-6 px-6 py-4 bg-gray-100 dark:bg-gray-800 border-2 border-gray-400 dark:border-white shadow-md overflow-hidden sm:rounded-lg">
             {{ $slot }}
         </div>
     </div>

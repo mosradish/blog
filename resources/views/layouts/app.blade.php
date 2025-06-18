@@ -24,12 +24,12 @@
         x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))"
         class="bg-white dark:bg-gray-900 text-gray-800 dark:text-white transition-colors">
 
-        <div class="min-h-screen dark:bg-gray-900">
+        <div class="bg-white dark:bg-gray-900 min-h-screen">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
             @isset($header)
-                <header class="mt-16 mb-6 w-full mx-auto flex items-center h-16 bg-white border-b border-gray-100 dark:bg-gray-900 flex shadow dark:border-gray-700 dark:shadow-md relative">
+                <header class="mt-16 mb-6 w-full mx-auto flex items-center h-16 bg-white dark:bg-gray-900 border-b border-gray-100  flex shadow dark:border-gray-700 dark:shadow-md relative">
                     <!-- トグルボタン -->
                     {{ $header }}
                     <button @click="darkMode = !darkMode"
@@ -51,8 +51,8 @@
             @endisset
 
             <!-- Page Content -->
-            <main>
-                <div id="x-full bg-gray-100 text-center">
+            <main class="pb-4">
+                <div id="x-full bg-gray-100">
                     {{ $slot }}
                 </div>
             </main>

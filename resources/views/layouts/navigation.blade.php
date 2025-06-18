@@ -1,6 +1,6 @@
 <nav x-data="{ open: false }" class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-700 shadow">
     <!-- Primary Navigation Menu -->
-    <div class="w-full px-[10%] bg-white dark:bg-gray-900 text-center flex h-16">
+    <div class="w-full px-[10%] text-center flex h-16">
         <div class="w-full flex relative">
             <!-- Logo -->
             <a href="{{ route('posts.index') }}">
