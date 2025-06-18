@@ -7,7 +7,7 @@
         <h3 class="text-2xl font-bold">{{ $post->title }}</h3>
         <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">投稿者: {{ $post->user->name }}</p>
         
-        <p class="mb-4">{{ $post->body }}</p>
+        <p class="mb-4">{!! nl2br(e($post->body)) !!}</p>
 
         @if ($post->image_path)
             <img src="{{ asset('storage/' . $post->image_path) }}" class="max-w-[50%] max-h-64 mx-auto my-4 rounded shadow">
