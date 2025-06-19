@@ -18,11 +18,11 @@
             <!-- 日付範囲 -->
             <div>
                 <label class="text-gray-900 dark:text-white">開始日:</label>
-                <input type="date" name="from" value="{{ request('from') }}" class="border rounded px-2 py-1">
+                <input type="date" name="from" value="{{ request('from') }}" class="border-2 border-gray-800 dark:border-gray-400 rounded px-2 py-1">
             </div>
             <div>
                 <label class="text-gray-900 dark:text-white">終了日:</label>
-                <input type="date" name="to" value="{{ request('to') }}" class="border rounded px-2 py-1">
+                <input type="date" name="to" value="{{ request('to') }}" class="border-2 border-gray-800 dark:border-gray-400 rounded px-2 py-1">
             </div>
 
             <!-- すべてトグル（先頭） -->
