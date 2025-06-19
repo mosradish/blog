@@ -6,7 +6,7 @@
     <div class="py-6 w-[80%] mx-[10%] mx-auto bg-white dark:bg-gray-900 text-gray-800 dark:text-white">
         <h3 class="text-2xl font-bold">{{ $post->title }}</h3>
         <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">投稿者: {{ $post->user->name }}</p>
-        
+
         <p class="mb-4">{!! nl2br(e($post->body)) !!}</p>
 
         @if ($post->image_path)
@@ -14,8 +14,8 @@
         @endif
 
         <a href="{{ route('posts.index') }}"
-           class="text-blue-600 dark:text-blue-400 underline hover:opacity-75">
-           ← 一覧に戻る
+            class="text-blue-600 dark:text-blue-400 underline hover:opacity-75">
+            ← 一覧に戻る
         </a>
     </div>
 
@@ -61,7 +61,7 @@
             @if (auth()->id() === $comment->user_id)
                 <div class="flex space-x-2 mt-2">
                     <a href="{{ route('comments.edit', $comment) }}"
-                       class="inline-flex items-center bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        class="inline-flex items-center bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                         編集
                     </a>
 

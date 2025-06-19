@@ -26,7 +26,7 @@ class CommentController extends Controller
 
         ActivityLog::create([
             'user_id' => auth()->id(),
-            'action' => 'post_created',
+            'action' => 'comment_created',
             'description' => "ブログ「{$post->title}」にコメントしました。",
         ]);
 
@@ -46,7 +46,7 @@ class CommentController extends Controller
 
         ActivityLog::create([
             'user_id' => auth()->id(),
-            'action' => 'post_created',
+            'action' => 'comment_deleted',
             'description' => "ブログ「{$post->title}」のコメントを削除しました。",
         ]);
 
@@ -79,7 +79,7 @@ class CommentController extends Controller
 
         ActivityLog::create([
             'user_id' => auth()->id(),
-            'action' => 'post_created',
+            'action' => 'comment_updated',
             'description' => "ブログ「{$post->title}」のコメントを編集しました。",
         ]);
 

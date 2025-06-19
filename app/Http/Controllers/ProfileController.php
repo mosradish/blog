@@ -65,6 +65,12 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
+        ActivityLog::create([
+            'user_id' => auth()->id(),
+            'action' => 'profile_deleted',
+            'description' => "ユーザー「{$user->name}」のプロフィールを削除しました。",
+        ]);
+
         return Redirect::to('/');
     }
 }

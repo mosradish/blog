@@ -1,5 +1,7 @@
 import './bootstrap';
 import './image-preview.js';
+import './dashboard-toggle';
+
 
 import Alpine from 'alpinejs';
 

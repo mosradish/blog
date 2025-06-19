@@ -20,7 +20,7 @@ class LikeController extends Controller
 
         ActivityLog::create([
             'user_id' => auth()->id(),
-            'action' => 'post_created',
+            'action' => 'like_created',
             'description' => "ブログ「{$post->title}」にいいねしました。",
         ]);
 
@@ -35,7 +35,7 @@ class LikeController extends Controller
 
         ActivityLog::create([
             'user_id' => auth()->id(),
-            'action' => 'post_created',
+            'action' => 'like_deleted',
             'description' => "ブログ「{$post->title}」のいいねを取り消しました。",
         ]);
 

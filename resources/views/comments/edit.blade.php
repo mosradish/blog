@@ -11,7 +11,7 @@
             @method('PUT')
 
             <div class="mb-4">
-                <label for="body" class="block text-gray-700">コメント</label>
+                <label for="body" class="block text-gray-700 dark:text-gray-100">コメント</label>
                 <textarea name="body" id="body" rows="4" class="w-full border rounded p-2" required>{{ old('body', $comment->body) }}</textarea>
             </div>
 

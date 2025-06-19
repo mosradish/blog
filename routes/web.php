@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\DashboardController;
 use App\Models\ActivityLog;
 
 
@@ -21,10 +22,9 @@ Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->nam
 Route::get('/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit')->middleware('auth');
 Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update')->middleware('auth');
 
-Route::get('/dashboard', function () {
-    $activities = ActivityLog::latest()->with('user')->take(10)->get();
-    return view('dashboard', compact('activities'));
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 
 Route::middleware('auth')->group(function () {
