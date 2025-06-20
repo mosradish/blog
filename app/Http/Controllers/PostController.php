@@ -66,8 +66,8 @@ class PostController extends Controller
     // 編集フォーム
     public function edit(Post $post)
     {
-        // 投稿者本人でなければ403エラー
-        if ($post->user_id !== Auth::id()) {
+        // 投稿者本人 or Admin でなければ403エラー
+        if (auth()->id() !== $post->user_id && !auth()->user()->isAdmin()) {
             abort(403);
         }
         return view('posts.edit', compact('post'));
@@ -76,7 +76,7 @@ class PostController extends Controller
     // 更新処理
     public function update(Request $request, Post $post)
     {
-        if ($post->user_id !== Auth::id()) {
+        if (auth()->id() !== $post->user_id && !auth()->user()->isAdmin()) {
             abort(403);
         }
 
@@ -109,7 +109,7 @@ class PostController extends Controller
     // 削除処理
     public function destroy(Post $post)
     {
-        if ($post->user_id !== Auth::id()) {
+        if (auth()->id() !== $post->user_id && !auth()->user()->isAdmin()) {
             abort(403);
         }
 

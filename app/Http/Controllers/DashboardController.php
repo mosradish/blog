@@ -9,8 +9,20 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        // ★ 最初にクエリビルダを初期化する
+        // 最初にクエリビルダを初期化する
         $query = ActivityLog::with('user')->latest();
+
+        $user = auth()->user();
+
+        // 管理者以外は常に自分のログのみ
+        if (!$user->isAdmin()) {
+            $query->where('user_id', $user->id);
+        }
+
+        // 管理者で only_mine が指定されていれば自分のログに絞る
+        if ($user->isAdmin() && $request->filled('only_mine')) {
+            $query->where('user_id', $user->id);
+        }
 
         // アクション（複数選択）のフィルター
         if ($request->filled('actions')) {

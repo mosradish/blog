@@ -35,8 +35,8 @@ class CommentController extends Controller
 
     public function destroy(Comment $comment)
     {
-        // ログインユーザー本人のみ削除可能
-        if (auth()->id() !== $comment->user_id) {
+        // ログインユーザー本人 or Admin のみ削除可能
+        if (auth()->id() !== $comment->user_id && !auth()->user()->isAdmin()) {
             return redirect()->back()->with('error', 'コメントを削除する権限がありません。');
         }
 
@@ -55,8 +55,8 @@ class CommentController extends Controller
 
     public function edit(Comment $comment)
     {
-        if (auth()->id() !== $comment->user_id) {
-            return redirect()->back()->with('error', 'コメントを編集する権限がありません。');
+        if (auth()->id() !== $comment->user_id && !auth()->user()?->is_admin) {
+            abort(403); // アクセス拒否
         }
 
         return view('comments.edit', compact('comment'));
@@ -64,7 +64,7 @@ class CommentController extends Controller
 
     public function update(Request $request, Comment $comment)
     {
-        if (auth()->id() !== $comment->user_id) {
+        if (auth()->id() !== $comment->user_id && !auth()->user()->isAdmin()) {
             return redirect()->back()->with('error', 'コメントを編集する権限がありません。');
         }
 

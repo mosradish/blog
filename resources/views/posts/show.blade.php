@@ -58,7 +58,7 @@
                 投稿者: {{ $comment->user->name }} | {{ $comment->created_at->diffForHumans() }}
             </small>
 
-            @if (auth()->id() === $comment->user_id)
+            @if (auth()->id() === $comment->user_id || Auth::user()?->is_admin)
                 <div class="flex space-x-2 mt-2">
                     <a href="{{ route('comments.edit', $comment) }}"
                         class="inline-flex items-center bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">

@@ -32,7 +32,12 @@
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button class="inline-flex items-center py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-200 bg-white dark:bg-gray-900 hover:text-gray-700 dark:hover:text-white focus:outline-none">
-                                <div>{{ Auth::user()?->name ?? 'ゲスト' }}</div>
+                                <div>
+                                    @if(Auth::user()?->is_admin)
+                                        <span class="bg-red-500 text-white text-xs px-2 py-1 rounded">Admin</span>
+                                    @endif
+                                    {{ Auth::user()?->name ?? 'ゲスト' }}
+                                </div>
                                 <div class="ms-1">
                                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -88,6 +93,9 @@
                 <ul class="fixed mt-16 w-full list-none divide-y divide-white dark:divide-gray-600 flex flex-wrap bg-gray-100 dark:bg-gray-900 opacity-95">
                     <li class="h-16 w-full flex items-center justify-center">
                         <h2 class="font-semibold text-xl text-gray-800 dark:text-white">
+                            @if(Auth::user()?->is_admin)
+                                <span class="bg-red-500 text-white text-xs px-2 py-1 rounded">Admin</span>
+                            @endif
                             {{ Auth::user()?->name ?? 'ゲスト' }}
                         </h2>
                     </li>

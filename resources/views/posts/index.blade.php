@@ -38,7 +38,7 @@
                 <p class="mt-2 py-4 text-gray-800 dark:text-gray-100">{!! nl2br(e($post->body)) !!}</p>
 
                 @auth
-                    @if ($post->user_id === Auth::id())
+                    @if ($post->user_id === Auth::id() || Auth::user()?->is_admin)
                         <a href="{{ route('posts.edit', $post) }}"
                             class="inline-flex items-center bg-blue-500 text-white mr-2 px-4 py-2 rounded hover:underline hover:bg-blue-600 dark:hover:bg-blue-600">
                             編集

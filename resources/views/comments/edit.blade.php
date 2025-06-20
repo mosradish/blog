@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-xl font-semibold c leading-tight text-gray-800">
+        <h2 class="w-full place-content-center text-center font-semibold text-xl text-gray-800 dark:text-gray-200">
             コメント編集
         </h2>
     </x-slot>
@@ -12,7 +12,7 @@
 
             <div class="mb-4">
                 <label for="body" class="block text-gray-700 dark:text-gray-100">コメント</label>
-                <textarea name="body" id="body" rows="4" class="w-full border rounded p-2" required>{{ old('body', $comment->body) }}</textarea>
+                <textarea name="body" id="body" rows="4" class="w-full border rounded p-2 dark:text-gray-800" required>{{ old('body', $comment->body) }}</textarea>
             </div>
 
             <button type="submit" class="bg-blue-500 text-white mr-2 px-4 py-2 rounded">更新する</button>
