@@ -114,14 +114,14 @@
                             <x-responsive-nav-link
                                 :href="route('register')"
                                 :active="request()->routeIs('register')"
-                                class="h-12 w-28 flex items-center justify-center text-white bg-blue-500 rounded hover:underline dark:hover:bg-blue-600">
+                                class="h-12 w-28 flex items-center justify-center text-white dark:text-white bg-blue-500 rounded hover:underline dark:hover:bg-blue-600">
                                 Register
                             </x-responsive-nav-link>
 
                             <x-responsive-nav-link
                                 :href="route('login')"
                                 :active="request()->routeIs('login')"
-                                class="h-12 w-28 flex items-center justify-center text-white bg-blue-500 rounded hover:underline dark:hover:bg-blue-600">
+                                class="h-12 w-28 flex items-center justify-center text-white dark:text-white bg-blue-500 rounded hover:underline dark:hover:bg-blue-600">
                                 Login
                             </x-responsive-nav-link>
                         </li>
