@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Post;
 use App\Models\ActivityLog;
 use Illuminate\Support\Facades\Auth;
+use App\Events\CommentPosted;
 
 class CommentController extends Controller
 {
@@ -29,6 +30,9 @@ class CommentController extends Controller
             'action' => 'comment_created',
             'description' => "ブログ「{$post->title}」にコメントしました。",
         ]);
+
+        // イベントを発火
+        event(new CommentPosted($comment));
 
         return redirect()->route('posts.show', $post)->with('success', 'コメントを投稿しました');
     }

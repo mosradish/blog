@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'lambda' => [
+        'comment_notify_url' => env('LAMBDA_COMMENT_NOTIFY_URL'),
+    ],
+
 ];
